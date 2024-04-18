@@ -1,0 +1,18 @@
+<h1>Photostream!</h1>
+
+<%= form_with method: :get do |f|%>
+  <%= f.label :user_id%>
+  <%= f.text_field :user_id%>
+  <%= f.submit "Show photostream"%>
+<% end %>
+
+<br>
+
+<% if @photos.nil? %>
+<% elsif @photos == {} %>
+  <p>User or pictures not found</p>
+<% else %>
+  <% @photos.each do |photo|%>
+    <%= image_tag "https://live.staticflickr.com/#{photo["server"]}/#{photo["id"]}_#{photo["secret"]}.jpg" %>
+  <% end %>
+<% end %>
